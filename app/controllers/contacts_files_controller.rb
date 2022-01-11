@@ -4,7 +4,7 @@ class ContactsFilesController < ApplicationController
   before_action :set_contacts_file, only: [:show, :import_contacts_from_file]
   def index
     @contacts_file = ContactsFile.new
-    @contacts_files = current_user.contacts_files.paginate(page: params[:page], per_page: 10)
+    @contacts_files = current_user.contacts_files.paginate(page: params[:page], per_page: 5)
   end
 
   def show
@@ -30,8 +30,11 @@ class ContactsFilesController < ApplicationController
         new_contact = current_user.contacts.build(file_line.to_h)
         if new_contact.save 
           @contacts_file.imports += 1
+        else
+          @contacts_file.import_failures.build(file_line: file_line.to_s, failure_messages: new_contact.errors.full_messages.join("\n"))
         end
         rescue ActiveModel::UnknownAttributeError => e 
+          @contacts_file.import_failures.build(file_line: file_line.to_s, failure_messages: e.message)
           next
       end
       if @contacts_file.imports == 0

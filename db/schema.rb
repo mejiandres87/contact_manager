@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_11_024353) do
+ActiveRecord::Schema.define(version: 2022_01_11_170634) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -65,6 +65,15 @@ ActiveRecord::Schema.define(version: 2022_01_11_024353) do
     t.index ["user_id"], name: "index_contacts_files_on_user_id"
   end
 
+  create_table "import_failures", force: :cascade do |t|
+    t.string "file_line"
+    t.string "failure_messages"
+    t.integer "contacts_file_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["contacts_file_id"], name: "index_import_failures_on_contacts_file_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -81,4 +90,5 @@ ActiveRecord::Schema.define(version: 2022_01_11_024353) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "contacts", "users"
   add_foreign_key "contacts_files", "users"
+  add_foreign_key "import_failures", "contacts_files"
 end

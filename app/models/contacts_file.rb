@@ -1,7 +1,7 @@
 class ContactsFile < ApplicationRecord
   validates :name, presence: true
   belongs_to :user
-
+  has_many :import_failures
   has_one_attached :csv_file
 
   enum status: { pending: 'ON HOLD',
