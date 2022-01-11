@@ -1,23 +1,23 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  birthdate: 2022-01-10
-  phone_number: MyString
-  address: MyString
-  cc_mask: MyString
-  hashed_cc: MyString
-  cc_franchise: MyString
-  email: MyString
-  user: one
+# one:
+#   name: MyString
+#   birthdate: 2022-01-10
+#   phone_number: MyString
+#   address: MyString
+#   cc_mask: MyString
+#   hashed_cc: MyString
+#   cc_franchise: MyString
+#   email: MyString
+#   user: one
 
-two:
-  name: MyString
-  birthdate: 2022-01-10
-  phone_number: MyString
-  address: MyString
-  cc_mask: MyString
-  hashed_cc: MyString
-  cc_franchise: MyString
-  email: MyString
-  user: two
+# two:
+#   name: MyString
+#   birthdate: 2022-01-10
+#   phone_number: MyString
+#   address: MyString
+#   cc_mask: MyString
+#   hashed_cc: MyString
+#   cc_franchise: MyString
+#   email: MyString
+#   user: two
