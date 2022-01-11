@@ -16,7 +16,10 @@
             <td> <%= cf.name %> </td>
             <td> <%= cf.status %> </td>
             <td> <%= cf.imports %> </td>
-            <td> <%= link_to "Show", contacts_file_path(cf), class: "btn btn-success" %> </td>
+            <td> 
+                <%= link_to "Show", contacts_file_path(cf), class: "btn btn-success" %> 
+                <%= link_to "Import", import_contacts_file_path(cf), method: :post, class: "btn btn-warning" %>
+            </td>
         </tr>
     <% end %>
   </tbody>
