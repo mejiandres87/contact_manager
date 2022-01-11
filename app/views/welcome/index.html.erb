@@ -1,3 +1,33 @@
-<h1>Welcome index</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Phone number</th>
+      <th scope="col">Birthdate</th>
+      <th scope="col">Address</th>
+      <th scope="col">Email</th>
+      <th scope="col">Credit Card Franchise</th>
+      <th scope="col">Credit card mask</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @contacts.each do |contact|%>
+        <tr>
+            <td> <%= contact.name %> </td>
+            <td> <%= contact.phone_number %> </td>
+            <td> <%= contact.birthdate.strftime("%Y %B %d") %> </td>
+            <td> <%= contact.address %> </td>
+            <td> <%= contact.email %> </td>
+            <td> <%= contact.cc_franchise %> </td>
+            <td> <%= contact.cc_mask %> </td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="flickr_pagination">
+  <%= will_paginate @contacts, :container => false %>
+</div>
+
 
 <%= link_to 'Sign out', destroy_user_session_path, class: "btn btn-danger logout-button", method: :delete %>
