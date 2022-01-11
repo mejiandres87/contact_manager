@@ -17,5 +17,6 @@ class ContactsFile < ApplicationRecord
   private
   def init_status
     self.status = ContactsFile.statuses[:pending]
+    self.imports = 0
   end
 end
