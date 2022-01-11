@@ -24,25 +24,26 @@ class ContactsFilesController < ApplicationController
   end
 
   def import_contacts_from_file
-    if @contacts_file.pending?
-      @contacts_file.processing!
-      CSV.parse(@contacts_file.csv_file.download, headers: true, encoding: 'UTF-8') do |file_line|
-        new_contact = current_user.contacts.build(file_line.to_h)
-        if new_contact.save 
-          @contacts_file.imports += 1
-        else
-          @contacts_file.import_failures.build(file_line: file_line.to_s, failure_messages: new_contact.errors.full_messages.join("\n"))
-        end
-        rescue ActiveModel::UnknownAttributeError => e 
-          @contacts_file.import_failures.build(file_line: file_line.to_s, failure_messages: e.message)
-          next
-      end
-      if @contacts_file.imports == 0
-        @contacts_file.failed!
-      else
-        @contacts_file.finished!
-      end
-    end
+    # if @contacts_file.pending?
+    #   @contacts_file.processing!
+    #   CSV.parse(@contacts_file.csv_file.download, headers: true, encoding: 'UTF-8') do |file_line|
+    #     new_contact = current_user.contacts.build(file_line.to_h)
+    #     if new_contact.save 
+    #       @contacts_file.imports += 1
+    #     else
+    #       @contacts_file.import_failures.build(file_line: file_line.to_s, failure_messages: new_contact.errors.full_messages.join("\n"))
+    #     end
+    #     rescue ActiveModel::UnknownAttributeError => e 
+    #       @contacts_file.import_failures.build(file_line: file_line.to_s, failure_messages: e.message)
+    #       next
+    #   end
+    #   if @contacts_file.imports == 0
+    #     @contacts_file.failed!
+    #   else
+    #     @contacts_file.finished!
+    #   end
+    # end
+    ContactImportWorker.perform_async(@contacts_file.id)
     redirect_to @contacts_file
   end
 
