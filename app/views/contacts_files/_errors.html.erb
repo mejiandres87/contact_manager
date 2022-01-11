@@ -1,0 +1,19 @@
+<% if @contacts_file.import_failures.any? %>
+<h1> The following errors were found while importing records from file </h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col"> Input line </th>
+        <th scope="col"> Error messages</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @contacts_file.import_failures.each do |import_failure| %>
+        <tr>
+          <td> <%= import_failure.file_line %> </td>
+          <td> <%= import_failure.failure_messages %> </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

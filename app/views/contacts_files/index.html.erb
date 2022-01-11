@@ -1,0 +1,34 @@
+<%= link_to "Back to contacts", root_path, class: "btn btn-primary"%>
+<br/>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"> ID </th>
+      <th scope="col"> File name</th>
+      <th scope="col"> Status</th>
+      <th scope="col"> Imported Records</th>
+      <th scope="col"> Failed Records</th>
+      <th scope="col"> Actions </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @contacts_files.each do |cf| %>
+        <tr>
+            <td> <%= cf.id %> </td>
+            <td> <%= cf.name %> </td>
+            <td> <%= cf.status %> </td>
+            <td> <%= cf.imports %> </td>
+            <td> <%= cf.import_failures.any? ? cf.import_failures.count : 0%></td>
+            <td> 
+                <%= link_to "Show", contacts_file_path(cf), class: "btn btn-success" %> 
+                <%= link_to "Import", import_contacts_file_path(cf), method: :post, class: "btn btn-warning" %>
+            </td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
+
+  <div class="flickr_pagination">
+    <%= will_paginate @contacts_files, :container => false %>
+  </div>
+<%= render 'form', contacts_file: @contacts_file %>

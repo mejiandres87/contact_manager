@@ -1,0 +1,18 @@
+<h1> File name: <%= @contacts_file.name %> </h1>
+<p> Import status: <%= @contacts_file.status%></p>
+<% if @contacts_file.pending? %>
+  <h1> The import process has not begun yet </h1>
+<% end %>
+<% if @contacts_file.processing? %>
+  <h1> The file is being processed </h1>
+<% end %>
+<% if @contacts_file.finished? %>
+  <h1> The import process finished and <%= @contacts_file.imports %> <%= @contacts_file.imports == 1 ? "record has " : "records have "%> been imported </h1>
+  <%= render 'errors', contacts_file: @contacts_file %>
+<% end %>
+<% if @contacts_file.failed? %>
+  <h1> The import process finished and no records have been imported </h1>
+  <%= render 'errors', contacts_file: @contacts_file %>
+<% end %>
+
+<%= link_to "Back to all imports", contacts_files_path, class: "btn btn-primary" %>
