@@ -1,0 +1,5 @@
+name,phone_number,email,cc_mask,birthdate,address
+test 1,(+57) 310 477 07 18,test1@email.com,4111111111111111,19-05-1987,Cra 11 # 95 - 37
+test 2,(+01) 555 555 55 55,test2@email.com,5556174520722851,10-09-1995,Fake Address 123
+test 3,(+01) 555 555 55 55,test3@email.com,348614663476108,29-02-2020,Random Address
+test 4,(+98) 123 456 78 90,test4@email.com,3541828887437048,09-12-1970,Old Address
