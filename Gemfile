@@ -26,6 +26,7 @@ gem 'devise-bootstrap-views', '~> 1.0'
 gem 'credit_card_validations'
 gem 'will_paginate', '~> 3.3'
 gem 'sidekiq'
+gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
